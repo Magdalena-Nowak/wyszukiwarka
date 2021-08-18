@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+  font-size: 10px;
+}
+header {
+  height: 30vh;
+  background-image: url(./images/pexels-min-an-1441122.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600; 
+}
+
+.form-control {
+  font-size: 1.6rem;
+}
+
+.list-group {
+  font-size: 1.3rem;
+}
