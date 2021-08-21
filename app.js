@@ -4,36 +4,41 @@ const list = document.querySelector(".list-group-flush");
 let allDrinks = [];
 let allMatchingDrinks = [];
 
-listItems.forEach(item => allDrinks.push(item.textContent));
+listItems.forEach(item => {
+    const itemText = item.textContent;
+    allDrinks.push(itemText.toLowerCase());
+});
+
+const removingItems = () => {
+    const newListItems = document.querySelectorAll("li");
+    newListItems.forEach(item => item.remove());
+    allMatchingDrinks = [];
+}
+
+const addingNewList = (actualArray) => {
+    actualArray.forEach((item) => {
+        const newItem = document.createElement('li');
+        newItem.classList.add("list-group-item", "p-3");
+        const upperItem = item[0].toUpperCase();
+        const cutItem = item.slice(1);
+         newItem.textContent = upperItem + cutItem;
+        list.append(newItem);
+    })
+}
 
 const checkingSearchingMatch = () => {
     if (textInput.value) {
-    const newListItems = document.querySelectorAll("li");
-    newListItems.forEach(item => item.remove());
-    allMatchingDrinks = [];
+removingItems();
     const userSearch = textInput.value.toLowerCase();
 allDrinks.forEach((item) => {
-    const smallDrink = item.toLowerCase();
-    if (smallDrink.match(userSearch)) {
-        allMatchingDrinks.push(smallDrink);
+    if (item.match(userSearch)) {
+        allMatchingDrinks.push(item);
     }
 });
-allMatchingDrinks.forEach((item) => {
-    const newItem = document.createElement('li');
-    newItem.classList.add("list-group-item", "p-3");
-    newItem.textContent = item;
-    list.append(newItem);
-})
+addingNewList(allMatchingDrinks);
 } else {
-    const newListItems = document.querySelectorAll("li");
-    newListItems.forEach(item => item.remove());
-    allMatchingDrinks = [];
-    allDrinks.forEach((item) => {
-        const newItem = document.createElement('li');
-        newItem.classList.add("list-group-item", "p-3");
-        newItem.textContent = item;
-        list.append(newItem);
-    })  
+removingItems();
+addingNewList(allDrinks); 
 }
 }
 
